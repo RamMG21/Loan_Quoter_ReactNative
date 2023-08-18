@@ -1,8 +1,11 @@
 import { defaults } from 'chart.js';
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, StatusBar, View } from 'react-native';
+import {SafeAreaView, StyleSheet, Text, StatusBar, View, LogBox } from 'react-native';
 import Form  from './src/components/Form'
 import colors from './src/utils/colors'
+
+
+
 export default function App() {
   return (
    
@@ -13,10 +16,12 @@ export default function App() {
     <SafeAreaView style={styles.SafeArea}>
       <Text style = {styles.titleApp}>Loan Quoter</Text>
       <Form />
+      
       </SafeAreaView>
 
       <SafeAreaView>
       <Text>Resultado</Text>
+      
       </SafeAreaView>
 
       <SafeAreaView>
