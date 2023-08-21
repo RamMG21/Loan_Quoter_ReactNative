@@ -5,19 +5,38 @@ import Picker from 'react-native-picker-select';
 import RNPickerSelect from 'react-native-picker-select';
 
 
-export default function Form() {
+export default function Form(props) {
+
+
+    const {setCapital ,setRate, setMonth} = props;
+
+
     return(
         <View style = {styles.viewForm}>
         <View style = {styles.viewInputs}>
             <TextInput placeholder="Amount"
             keyboardType='numeric'
-            style ={styles.input}/>
-            
-            <TextInput placeholder="Rate %"
+            style ={styles.input}
+            onChange = {(e) => setCapital(e.nativeEvent.text)
+                }
+                />
+               
+    
+            <TextInput 
+            placeholder="Rate %"
             keyboardType='numeric'
-            style= {[styles.input, styles.inputRate]}/>
-        </View>        
+            style= {[styles.input, styles.inputRate]}
+            onChange = {(e) => setRate(e.nativeEvent.text)}
+            />
+
+
+
+        </View> 
+            <TextInput placeholder='# Months'
+            keyboardType='numeric' 
+            style= {[styles.input, styles.SelectItem]} />
         </View>
+        
     );
 }
 
@@ -53,5 +72,10 @@ const styles = StyleSheet.create({
     inputRate: {
         width: '40%',
         marginLeft: 5,
+    },
+
+    SelectItem: {
+        width: '104%',
+        marginTop: 10,
     }
 });
