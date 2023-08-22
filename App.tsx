@@ -9,6 +9,7 @@ import {SafeAreaView,
   Button 
 } from 'react-native';
 import Form  from './src/components/Form'
+import Footer  from './src/components/Footer'
 import colors from './src/utils/colors'
 import {useState} from 'react';
 
@@ -23,7 +24,7 @@ export default function App() {
   const [rate, setRate] = useState(null);
   const [months, setMonths] = useState(null);
 
-  const onSubmit = () => {
+  const calculate = () => {
     console.log("capital ->", capital)
     console.log("rate ->", rate)
     console.log("months ->", months)
@@ -51,11 +52,9 @@ export default function App() {
       <View>
        <Text>Resultado</Text>
        </View>
-       <View>
-        <Button title ="Send" onPress = {onSubmit} />
-      <Text>Footer</Text>
-        
-      </View>
+
+       <Footer calculate = {calculate} />
+       
     </>
   )
 }
@@ -83,6 +82,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     zIndex: -1,
   },
+
+  
   
 
 });
