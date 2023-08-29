@@ -10,6 +10,7 @@ import {SafeAreaView,
 } from 'react-native';
 import Form  from './src/components/Form'
 import Footer  from './src/components/Footer'
+import ResultCalculation from './src/components/ResultCalculation';
 import colors from './src/utils/colors'
 import {useState} from 'react';
 
@@ -23,11 +24,36 @@ export default function App() {
   const [capital, setCapital] = useState(null);
   const [rate, setRate] = useState(null);
   const [months, setMonths] = useState(null);
+  const [total, setTotal] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const calculate = () => {
-    console.log("capital ->", capital)
-    console.log("rate ->", rate)
-    console.log("months ->", months)
+    reset();
+      if(!capital){
+        setErrorMessage('add the amount you want to request');
+      } else if(!rate) {
+        setErrorMessage('add the interest on the loan');
+      }else if(!months){
+        setErrorMessage('select the months to pay');
+      }else {
+        const i = rate /100;
+        const fee = capital / ((1- Math.pow(i + 1, -months)) / i);
+        console.log(fee.toFixed(2).replace('.',','));
+      //  setTotal ({
+
+         // monthlyFee: fee.toFixed(2).replace('.',',')
+          //totalPayable: (fee * months).toFixed(2).replace('.',','),
+
+     //    });
+        console.log(fee);
+      }
+  };
+
+  const reset = () => {
+
+    setErrorMessage("");
+    setTotal(null)
+
   }
 
   return (
@@ -49,9 +75,7 @@ export default function App() {
     </SafeAreaView>
 
      
-      <View>
-       <Text>Resultado</Text>
-       </View>
+      <ResultCalculation  errorMessage = {errorMessage}/>
 
        <Footer calculate = {calculate} />
        

@@ -8,7 +8,7 @@ import RNPickerSelect from 'react-native-picker-select';
 export default function Form(props) {
 
 
-    const {setCapital ,setRate, setMonth} = props;
+    const {setCapital ,setRate, setMonths} = props;
 
 
     return(
@@ -34,7 +34,8 @@ export default function Form(props) {
         </View> 
             <TextInput placeholder='# Months'
             keyboardType='numeric' 
-            style= {[styles.input, styles.SelectItem]} />
+            style= {[styles.input, styles.SelectItem]}
+            onChange = {(e) => setMonths(e.nativeEvent.text)} />
         </View>
         
     );
